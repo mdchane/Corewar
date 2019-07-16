@@ -67,9 +67,9 @@ unsigned char				*ft_conv_hexa(int nbr, int size)
 	if (!(final_str = (unsigned char*)ft_strnew(size)))
 		return (NULL);
 	if (size == 2)
-		str = ft_itoa_base_short(nbr, 16);
+		str = (unsigned char *)ft_itoa_base_short(nbr, 16);
 	else
-		str = ft_itoa_base_int(nbr, 16);
+		str = (unsigned char *)ft_itoa_base_int(nbr, 16);
 	len = ft_strlen((char*)str);
 	if (len < size * 2)
 		str = ft_resize(str, size);

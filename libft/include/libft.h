@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 15:35:42 by jfleury           #+#    #+#             */
-/*   Updated: 2019/07/15 14:55:19 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/07/15 19:15:18 by igarbuz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 32
 # define CONV_ID_NB 13
 # define FLAGS_NB 5
 # define PRECI_GROUPS 3
@@ -120,8 +120,8 @@ char				*ft_strstr(const char *str, const char *to_find);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
-unsigned char		*ft_itoa_base_int(unsigned int nb, int base);
-unsigned char		*ft_itoa_base_short(unsigned short nb, int base);
+char				*ft_itoa_base_int(unsigned int nb, int base);
+char				*ft_itoa_base_short(unsigned short nb, int base);
 int					ft_toupper(int c);
 char				*ft_strextend(char *s1, char const *s2);
 char				*ft_strnextend(char *s1, char const *s2, size_t len);
@@ -150,7 +150,6 @@ char				*ft_strndup(const char *src, size_t n);
 char				*ft_itoa_base(unsigned long long n, int base);
 char				*ft_itoa_double(t_conv_spec conv_spec, long double nb);
 char				*ft_strrev(char *str);
-int					ft_printf(char *format, ...);
 char				*ft_data_conv_id(void);
 int					ft_store_conv_id(t_conv_spec *c_s, char *format, int i);
 void				ft_store_modifier(t_conv_spec *c_s, char *f, int i, int l);
@@ -191,5 +190,10 @@ char				*ft_precision_diouxx(t_conv_spec c_s, char *str);
 char				*ft_precision_s(t_conv_spec c_s, char *str);
 char				*ft_precision_p(t_conv_spec c_s, char *str);
 char				*ft_process_preci(t_conv_spec c_s, char *str);
+
+int					ft_atois(const char *str, int *nb);
+int					ft_isnumb(char *str);
+int					ft_mod(unsigned int val, unsigned int div);
+int					ft_iswhitespace(char c);
 
 #endif

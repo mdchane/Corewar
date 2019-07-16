@@ -13,23 +13,28 @@
 VM_DIR		=	./vm
 ASM_DIR		=	./asm
 
-#	Prefixes
+LIB_DIR		=	./libft
+PRT_DIR		=	./printf
 
 all		:
+		$(MAKE) -C $(LIB_DIR)
+		$(MAKE) -C $(PRT_DIR)
 		$(MAKE) -C $(VM_DIR)
 		$(MAKE) -C $(ASM_DIR)	
 
-#	Cleaner rules
 clean	:
+		$(MAKE) -C $(LIB_DIR) clean
+		$(MAKE) -C $(PRT_DIR) clean
 		$(MAKE) -C $(VM_DIR) clean
 		$(MAKE) -C $(ASM_DIR) clean
 
-fclean	:	clean
+fclean	:
+		$(MAKE) -C $(LIB_DIR) fclean
+		$(MAKE) -C $(PRT_DIR) fclean
 		$(MAKE) -C $(VM_DIR) fclean
 		$(MAKE) -C $(ASM_DIR) fclean
 
 re		:	fclean all
 
-#	Phony
 .PHONY	=	default all re clean fclean
 

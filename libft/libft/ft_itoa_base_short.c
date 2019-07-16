@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 15:05:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/07/12 17:24:30 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/07/13 17:27:38 by tmaze            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-static int			ft_malloc_len(unsigned short nb, int base)
+static int	ft_malloc_len(unsigned short nb, int base)
 {
-	short		i;
+	short	i;
 
 	i = 0;
 	while (nb != 0)
@@ -27,12 +27,12 @@ static int			ft_malloc_len(unsigned short nb, int base)
 	return (i);
 }
 
-unsigned char		*ft_itoa_base_short(unsigned short nb, int base)
+char		*ft_itoa_base_short(unsigned short nb, int base)
 {
-	unsigned short		result;
-	short				i;
-	unsigned char		*str;
-	char				*tab;
+	unsigned short	result;
+	short			i;
+	char			*str;
+	char			*tab;
 
 	tab = ft_strdup("0123456789abcdef");
 	if (base < 2 || base > 16)
@@ -40,7 +40,7 @@ unsigned char		*ft_itoa_base_short(unsigned short nb, int base)
 	i = ft_malloc_len(nb, base);
 	if (nb == 0)
 		i++;
-	if (!(str = malloc(sizeof(unsigned char*) * i + 1)))
+	if (!(str = (char*)malloc(sizeof(char*) * i + 1)))
 		return (NULL);
 	str[i] = '\0';
 	if (nb == 0)

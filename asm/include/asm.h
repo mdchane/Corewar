@@ -26,6 +26,7 @@
 # define COMMAND 11
 
 # include "libft.h"
+# include "ft_printf.h"
 # include "op.h"
 # include <sys/types.h>
 # include <sys/stat.h>

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 15:05:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/07/12 17:24:38 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/07/09 15:26:17 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-static int			ft_malloc_len(unsigned int nb, int base)
+static int	ft_malloc_len(unsigned int nb, int base)
 {
 	int		i;
 
@@ -27,11 +27,11 @@ static int			ft_malloc_len(unsigned int nb, int base)
 	return (i);
 }
 
-unsigned char		*ft_itoa_base_int(unsigned int nb, int base)
+char		*ft_itoa_base_int(unsigned int nb, int base)
 {
 	unsigned int		result;
 	int					i;
-	unsigned char		*str;
+	char				*str;
 	char				*tab;
 
 	tab = ft_strdup("0123456789abcdef");
@@ -40,7 +40,7 @@ unsigned char		*ft_itoa_base_int(unsigned int nb, int base)
 	i = ft_malloc_len(nb, base);
 	if (nb == 0)
 		i++;
-	if (!(str = malloc(sizeof(unsigned char*) * i + 1)))
+	if (!(str = (char*)malloc(sizeof(char*) * i + 1)))
 		return (NULL);
 	str[i] = '\0';
 	if (nb == 0)

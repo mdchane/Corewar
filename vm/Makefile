@@ -32,10 +32,10 @@ NCURS	=	-lncurses
 
 #	Folders
 LIBDIR	=	../libft
-PRTDIR	=	printf
+PRTDIR	=	../printf
 SRCDIR  =	srcs
 OBJDIR	=	objs
-INCDIR	=	includes ../libft/include
+INCDIR	=	includes ../libft/include ../printf
 
 #	Source files
 
@@ -64,48 +64,17 @@ SRC		=	cw_parser.c		\
 			cw_args.c		\
 			cw_visual_win.c
 
-SRC_PRT	=	buf_cnt.c \
-			ft_argcast.c \
-			ft_arglen_f.c \
-			ft_arglen_oct.c \
-			ft_arglen.c \
-			ft_buf_print_db.c \
-			ft_buf_print_ldb.c \
-			ft_error.c \
-			ft_exp_dec.c \
-			ft_init_param.c \
-			ft_nd_div.c \
-			ft_nd_long_div.c \
-			ft_nd_long_mul.c \
-			ft_nd_long_round.c \
-			ft_nd_mul.c \
-			ft_nd_round.c \
-			ft_null.c \
-			ft_parse.c \
-			ft_printf_db.c \
-			ft_printf_ldb.c \
-			ft_printf.c \
-			ft_unicode.c \
-			ft_strcat.c \
-			libft_printf.c \
-			pow10.c \
-			print_buf_bit_float.c \
-			print_buf_num.c \
-			print_buf_prefix.c \
-			print_buf_unicode.c \
-			print_buf.c \
-			print_cs_pad.c \
-			print_num_pad.c
-
 OBJ		=	$(SRC:.c=.o)
 OBJ		=	$(SRC_PRT:.c=.o)
 
 LIB		=	ft
 LIBFILE	=	libft.a
 
+PRT		=	ftprintf
+PRTFILE	=	libftprintf.a
+
 #	Prefixes
 OBJP		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o)) 
-OBJP_PRT	=	$(addprefix $(OBJDIR)/, $(SRC_PRT:.c=.o))
 
 INCP		=	$(foreach dir, $(INCDIR), -I$(dir))
 
@@ -125,31 +94,19 @@ $(OBJDIR)/%.o	:	$(SRCDIR)/%.c includes/corewar.h
 		@mkdir -p $(OBJDIR)
 		$(CC) $(FLAGS) -c -o $@ $< $(INCP)
 
-$(OBJDIR)/%.o	:	$(PRTDIR)/%.c includes/ft_printf.h
-		@mkdir -p $(OBJDIR)
-		$(CC) $(FLAGS) -c -o $@ $< $(INCP)
-
-
-$(LIBDIR)/$(LIBFILE)	:
-		@$(ECHO) "$(YEL)===> $(GRE)$(NAME) : $(YEL) Librairy Compilation <===$(DEF)"
-		$(MAKE) -C $(LIBDIR) all
-
-$(NAME)	:	$(OBJP) $(OBJP_PRT) $(LIBDIR)/$(LIBFILE) # $(PRTDIR)/$(PRTFILE)
+$(NAME)	:	$(OBJP) $(OBJP_PRT) $(LIBDIR)/$(LIBFILE) $(PRTDIR)/$(PRTFILE)
 		@$(ECHO) "$(YEL)===> $(GRE)$(NAME) : $(YEL) Binary Compilation <===$(DEF)"
-		$(CC) $(FLAGS) -o $@ $^ $(INCP) -L$(LIBDIR) -l$(LIB) $(NCURS)
+		$(CC) $(FLAGS) -o $@ $^ $(INCP) -L$(LIBDIR) -l$(LIB) -L$(PRTDIR) -l$(PRT) $(NCURS)
 
 #	Cleaner rules
 clean	:
 		@$(ECHO) "$(RED)===> $(GRE)$(NAME) : $(RED) Delete Object Files <===$(DEF)"
 		@$(RM) -rf $(OBJDIR)
-		@$(MAKE) -C $(LIBDIR) clean
-#		@$(MAKE) -C $(PRTDIR) clean
 
 fclean	:	clean
 		@$(ECHO) "$(RED)===> $(GRE)$(NAME) : $(RED) Delete Binary File <===$(DEF)"
 		@$(RM) -f $(NAME) $(NAME2)
 		@$(RM) -rf *.dSYM
-		@$(MAKE) -C $(LIBDIR) fclean
 
 re		:	fclean default
 

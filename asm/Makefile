@@ -13,10 +13,10 @@
 NAME 		= 	asm
 CC 			= 	gcc
 RM 			= 	rm -f
-LIB_DIR		=	../libft
-INCLUDE 	= 	-I ./include
+INCLUDE	 	= 	-I ./include
 IN_LIB		= 	-I ../libft/include
-CFLAGS		+=	-Wall -Wextra -Werror $(INCLUDE) $(IN_LIB)
+IN_PRT		=	-I ../printf
+CFLAGS		+=	-Wall -Wextra -Werror $(INCLUDE) $(IN_LIB) $(IN_PRT)
 
 SRC_ASM		= 	src_asm/main_asm.c 								\
 				src_asm/op.c									\
@@ -44,29 +44,27 @@ SRC_PARSER 	=	src_asm/parser/ft_parser.c						\
 				src_asm/parser/ft_cal_progsize.c
 
 LIB			=	../libft/libft.a
+PRT			=	../printf/libftprintf.a
+
+INCP		=	$(foreach dir, $(INCDIR), -I$(dir))
 
 OBJ_ASM 	= $(SRC_ASM:.c=.o)
 OBJ_LEXER 	= $(SRC_LEXER:.c=.o)
 OBJ_PARSER 	= $(SRC_PARSER:.c=.o)
 
-all: libft $(NAME)
-
-libft :
-	make -C $(LIB_DIR) -f Makefile
+all: $(NAME)
 
 $(NAME): $(OBJ_ASM) $(OBJ_LEXER) $(OBJ_PARSER)
-	make -C $(LIB_DIR) -f Makefile
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJ_ASM) $(OBJ_LEXER) $(OBJ_PARSER) $(LIB)
+
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJ_ASM) $(OBJ_LEXER) $(OBJ_PARSER) $(LIB) $(PRT)
 
 clean:
-	make -C $(LIB_DIR) -f Makefile clean
 	$(RM) $(OBJ_ASM) $(OBJ_LEXER) $(OBJ_PARSER)
 
 fclean: clean
-	make -C $(LIB_DIR) -f Makefile fclean
 	$(RM) $(NAME)
 
 re: fclean all
 
-.SILENT: $(OBJ_ASM) $(OBJ_LEXER) $(OBJ_PARSER) $(NAME) all clean fclean re libft
-.PHONY: all libft clean fclean re
+.SILENT: $(OBJ_ASM) $(OBJ_LEXER) $(OBJ_PARSER) $(NAME) all clean fclean re
+.PHONY: all clean fclean re

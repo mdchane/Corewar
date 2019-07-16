@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 20:22:58 by jfleury           #+#    #+#              #
-#    Updated: 2019/07/09 15:26:41 by jfleury          ###   ########.fr        #
+#    Updated: 2019/07/15 19:15:02 by igarbuz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,6 @@ SRC_LIBFT =		libft/ft_memset.c		\
 				libft/ft_lstadd.c		\
 				libft/ft_lstadd_end.c	\
 				libft/ft_lstiter.c		\
-				libft/ft_lstprint_str.c	\
 				libft/ft_lstmap.c		\
 				libft/ft_strextend.c	\
 				libft/ft_strnextend.c	\
@@ -100,51 +99,24 @@ SRC_LIBFT =		libft/ft_memset.c		\
 				libft/ft_power.c 		\
 				libft/ft_itoa_base_int.c 	\
 				libft/ft_itoa_base_short.c 	\
-				libft/ft_strrev.c
-
-SRC_PRINTF =	ft_printf/ft_printf.c 									\
-				ft_printf/store/ft_store_struct.c						\
-				ft_printf/store/ft_store_struct_2.c						\
-				ft_printf/store/ft_struct_init_del.c					\
-				ft_printf/process/conversion_id/process_c.c				\
-				ft_printf/process/conversion_id/process_p.c				\
-				ft_printf/process/conversion_id/process_s.c				\
-				ft_printf/process/conversion_id/process_di.c			\
-				ft_printf/process/conversion_id/process_id.c			\
-				ft_printf/process/conversion_id/process_o.c				\
-				ft_printf/process/conversion_id/process_u.c				\
-				ft_printf/process/conversion_id/process_x.c				\
-				ft_printf/process/conversion_id/process_xx.c			\
-				ft_printf/process/conversion_id/process_f.c				\
-				ft_printf/process/conversion_id/process_b.c				\
-				ft_printf/process/conversion_id/process_dd.c			\
-				ft_printf/process/conversion_id/process_percent.c		\
-				ft_printf/process/flags/process_flags.c					\
-				ft_printf/process/flags/process_space.c					\
-				ft_printf/process/flags/process_plus.c					\
-				ft_printf/process/flags/process_zero.c					\
-				ft_printf/process/flags/process_minus.c					\
-				ft_printf/process/flags/process_hash.c					\
-				ft_printf/process/flags/process_hash2.c					\
-				ft_printf/process/min_width/process_min_width.c			\
-				ft_printf/process/precision/process_preci_diouxx.c		\
-				ft_printf/process/precision/process_preci_s.c			\
-				ft_printf/process/precision/process_preci_p.c			\
-				ft_printf/process/precision/process_preci_table.c		\
-				ft_printf/data/ft_data.c
+				libft/ft_strrev.c		\
+				libft/ft_isnumb.c		\
+				libft/ft_atois.c		\
+				libft/ft_mod.c			\
+				libft/ft_iswhitespace.c
 
 OBJ_LIBFT = $(SRC_LIBFT:.c=.o)
-OBJ_PRINTF = $(SRC_PRINTF:.c=.o)
+#OBJ_PRINTF = $(SRC_PRINTF:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ_LIBFT) $(OBJ_PRINTF)
-	$(AR) $(NAME) $(OBJ_LIBFT) $(OBJ_PRINTF)
+$(NAME): $(OBJ_LIBFT)
+	$(AR) $(NAME) $(OBJ_LIBFT)
 	$(RL) $(NAME)
 	echo "Make libft"
 
 clean:
-	$(RM) $(OBJ_LIBFT) $(OBJ_PRINTF)
+	$(RM) $(OBJ_LIBFT)
 	echo "Clean libft"
 
 fclean: clean
@@ -153,4 +125,4 @@ fclean: clean
 
 re: fclean all
 
-.SILENT: $(OBJ_LIBFT) $(OBJ_PRINTF) $(NAME) all clean fclean re
+.SILENT: $(OBJ_LIBFT)  $(NAME) all clean fclean re
