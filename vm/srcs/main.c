@@ -82,7 +82,7 @@ static void				cw_print_win(t_vm *vm, int i)
 	if (vm->args & AG_VISUAL)
 		visual_winners(vm, i);
 	else if (vm->args & AG_VERB)
-		ft_printf("Contestant %lu, \"%s\", has won !\n", i + 1
+		ft_printf("Contestant %d, \"%s\", has won !\n", i + 1
 			, vm->pls[i].prog_name);
 	else
 		ft_printf("le joueur %d(%s) a gagne\n", vm->pls[i].num
