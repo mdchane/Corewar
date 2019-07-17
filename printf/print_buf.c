@@ -14,7 +14,7 @@
 
 void		ft_flush(char *dst)
 {
-	write(1, dst, BUF_SIZE);
+	write(1, dst, BUF_M);
 	g_bcn++;
 }
 
